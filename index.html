@@ -1,45 +1,129 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8" />
-	<title>簡易ToDo</title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<title>浮世アイロニー研究所</title>
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="lib/css/bootstrap.min.css">
 </head>
 <body>
-	<div id="app" class="container-fluid mt-4">
-		<h1 class="text-center border bg-success text-white my-4">{{title}}</h1>
-		<div class="row">
-			<div class="col-sm-12 col-lg-6 mt-4">
-				<ul class="list-group">
-					<li class="list-group-item active text-center">{{add}}</li>
-					<li class="list-group-item">
-						<input type="text" class="w-100" v-model="task" placeholder="タスク" />
-					</li>
-					<li class="list-group-item">
-						<button type="button" class="btn btn-info w-100 mb-2" v-on:click="todoadd">追加</button>
-					</li>
-				</p>
-			</div>
+<div class="pos-f-t fixed-top shadow-deep">
+	<nav class="navbar navbar-light bg-light">
+		<button class="shadow-button border-none navbar-toggler" type="button" data-toggle="collapse" data-target=".collapse" aria-controls=".collapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="text-dark m-0 p-0" href="#">
+			<p class="m-0 p-0 navtext">UKIYO IRONY LABORATORY</p>
+		</a>
+	</nav>
 
-			<div class="col-sm-12 col-lg-6 mt-4">
-				<ul class="list-group">
-					<li class="list-group-item active text-center">{{todo}}</li>
-					<li v-for="(item,index) in list" class="list-group-item py-1">
-						<p v-bind:title="item.time" class="m-0 pt-2">
-							{{item.name}}
-							<button type="button" v-on:click="tododelete(index)" class="btn btn-danger float-right">削除</button>
-						</p>
-					</li>
-					<li class="list-group-item py-1">
-						{{task}}
-						<button type="button" class="btn btn-info" v-on:click="todoadd">追加</button>
-					</li>
-				</ul>
+	<div class="collapse">
+		<a class="link text-dark text-center" href="#">
+			<div class="p-4">
+				<h2 class="fonts-Orbitron">About</h2>
+			</div>
+		</a>
+	</div>
+
+	<div class="collapse">
+		<a class="link text-dark text-center" href="#">
+			<div class="p-4">
+				<h2 class="fonts-Orbitron">Works</h2>
+			</div>
+		</a>
+	</div>
+
+	<div class="collapse">
+		<a class="link text-dark text-center" href="#">
+			<div class="p-4">
+				<h2 class="fonts-Orbitron">Blog</h2>
+			</div>
+		</a>
+	</div>
+
+	<div class="collapse">
+		<a class="link text-dark text-center" href="#">
+			<div class="p-4">
+				<h2 class="fonts-Orbitron">Member</h2>
+			</div>
+		</a>
+	</div>
+
+</div>
+
+
+<div class="jumbotron jumbotron-fluid fixmargin">
+	<div class="container-fluid">
+		<h1 class="fonts-Orbitron">UKIYO IRONY LABORATORY</h1>
+	</div>
+</div>
+
+<div class="container mt-4">
+	<div class="row px-2">
+		<div class="col-lg-12 shadow-deep mb-4 px-4">
+			<h2 class="section mt-4">News</h2>
+
+			<table class="table table-striped mt-4 shadow">
+				<thead>
+					<tr>
+						<th>日時</th>
+						<th>更新者</th>
+						<th>内容</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>日時</td>
+						<td>更新者</td>
+						<td>内容</td>
+					</tr>
+					<tr>
+						<td>日時</td>
+						<td>更新者</td>
+						<td>内容</td>
+					</tr>
+					<tr>
+						<td>日時</td>
+						<td>更新者</td>
+						<td>内容</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="col-lg-12 shadow-deep mb-4">
+			<h2 class="section mt-4">Twitter</h2>
+			<div class="shadow mt-4 mb-4">
+				<a class="twitter-timeline" data-lang="en" data-height="500" data-theme="light" href="https://twitter.com/UIL_Info?ref_src=twsrc%5Etfw">Tweets by UIL_Info</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 		</div>
+
 	</div>
-<script src="jQuery/jquery-3.3.1.min.js"></script>
-<script src="Vuejs/vue.js"></script>
-<script src="js/common.js"></script>
+</div>
+
+
+
+
+
+<script src="lib/js/jquery-3.2.1.slim.min.js"></script>
+<script src="lib/js/popper.min.js"></script>
+<script src="lib/js/bootstrap.min.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDXj-0zsFDmlBBXffrgcLAMoh_UitAKD4s",
+    authDomain: "testpage-e7e87.firebaseapp.com",
+    databaseURL: "https://testpage-e7e87.firebaseio.com",
+    projectId: "testpage-e7e87",
+    storageBucket: "testpage-e7e87.appspot.com",
+    messagingSenderId: "246541844001"
+  };
+  firebase.initializeApp(config);
+</script>
+
 </body>
 </html>
