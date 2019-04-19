@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="app" class="container-fluid mt-4">
-		<h1 class="text-center border bg-success text-white m-4">{{title}}</h1>
+		<h1 class="text-center border bg-success text-white my-4">{{title}}</h1>
 		<div class="row">
 			<div class="col-sm-12 col-lg-6 mt-4">
 				<ul class="list-group">
@@ -25,9 +25,9 @@
 			<div class="col-sm-12 col-lg-6 mt-4">
 				<ul class="list-group">
 					<li class="list-group-item active text-center">ToDo</li>
-					<li v-for="item in list" class="list-group-item">
-						{{item}}
-						<button type="button" v-on:click="tododelete" class="btn btn-danger">削除</button>
+					<li v-for="(item,index) in list" class="list-group-item">
+						{{item.name}}
+						<button type="button" v-on:click="tododelete(index)" class="btn btn-danger">削除</button>
 					</li>
 					<li class="list-group-item">
 						{{task}}
@@ -41,7 +41,11 @@
 <script src="Vuejs/vue.js"></script>
 <script>
 $(function(){
-	var data = JSON.parse(localStorage.getItem('list'));
+	var data = [];
+	var localdata = JSON.parse(localStorage.getItem('list'));
+	if(localdata){
+		data = localdata;
+	}
 	var app = new Vue({
 		el:'#app',
 		data:{
@@ -51,19 +55,19 @@ $(function(){
 		},
 		methods:{
 			todoadd:function(){
-				app.list.push(app.task);
+				app.list.push({
+					name:app.task
+					});
 				app.task = '';
 			},
 			tododelete:function(todo){
-				var index = this.list.indexOf(todo);
-				this.list.splice(index,1);
+				this.list.splice(todo,1);
 			},
 			todosave:function(){
 				localStorage.setItem('list',JSON.stringify(app.list));
 			}
 		}
 	});
-
 })
 </script>
 </body>
