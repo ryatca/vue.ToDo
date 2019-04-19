@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>簡易ToDo</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 	<div id="app" class="container-fluid mt-4">
@@ -11,25 +11,26 @@
 		<div class="row">
 			<div class="col-sm-12 col-lg-6 mt-4">
 				<ul class="list-group">
-					<li class="list-group-item active text-center">追加</li>
+					<li class="list-group-item active text-center">{{add}}</li>
 					<li class="list-group-item">
 						<input type="text" class="w-100" v-model="task" placeholder="タスク" />
 					</li>
 					<li class="list-group-item">
 						<button type="button" class="btn btn-info w-100 mb-2" v-on:click="todoadd">追加</button>
-						<button type="button" class="btn btn-success w-100" v-on:click="todosave">状態を保存</button>
 					</li>
 				</p>
 			</div>
 
 			<div class="col-sm-12 col-lg-6 mt-4">
 				<ul class="list-group">
-					<li class="list-group-item active text-center">ToDo</li>
-					<li v-for="(item,index) in list" class="list-group-item">
-						{{item.name}}
-						<button type="button" v-on:click="tododelete(index)" class="btn btn-danger">削除</button>
+					<li class="list-group-item active text-center">{{todo}}</li>
+					<li v-for="(item,index) in list" class="list-group-item py-1">
+						<p v-bind:title="item.time" class="m-0 pt-2">
+							{{item.name}}
+							<button type="button" v-on:click="tododelete(index)" class="btn btn-danger float-right">削除</button>
+						</p>
 					</li>
-					<li class="list-group-item">
+					<li class="list-group-item py-1">
 						{{task}}
 						<button type="button" class="btn btn-info" v-on:click="todoadd">追加</button>
 					</li>
@@ -39,36 +40,6 @@
 	</div>
 <script src="jQuery/jquery-3.3.1.min.js"></script>
 <script src="Vuejs/vue.js"></script>
-<script>
-$(function(){
-	var data = [];
-	var localdata = JSON.parse(localStorage.getItem('list'));
-	if(localdata){
-		data = localdata;
-	}
-	var app = new Vue({
-		el:'#app',
-		data:{
-			title:"Hello ToDo list!",
-			task:"",
-			list:data
-		},
-		methods:{
-			todoadd:function(){
-				app.list.push({
-					name:app.task
-					});
-				app.task = '';
-			},
-			tododelete:function(todo){
-				this.list.splice(todo,1);
-			},
-			todosave:function(){
-				localStorage.setItem('list',JSON.stringify(app.list));
-			}
-		}
-	});
-})
-</script>
+<script src="js/common.js"></script>
 </body>
 </html>
